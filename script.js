@@ -6,10 +6,15 @@ function createFlower() {
   flower.classList.add("flower");
   const flowers = ["🌻","🌼","💛","✨"];
   flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+
   flower.style.left = Math.random() * window.innerWidth + "px";
+  flower.style.top = "-50px"; // inicio fuera de pantalla
   flower.style.animationDuration = (3 + Math.random() * 5) + "s";
+
   flowerContainer.appendChild(flower);
-  setTimeout(() => flower.remove(), 8000);
+
+  // Elimina la flor al terminar la animación
+  flower.addEventListener("animationend", () => flower.remove());
 }
 
 setInterval(createFlower, 400);
